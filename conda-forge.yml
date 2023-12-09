@@ -1,5 +1,7 @@
 bot:
   check_solvable: true
+conda_build:
+  pkg_format: '2'
 conda_forge_output_validation: true
 github:
   branch_name: main
@@ -7,5 +9,3 @@ github:
 provider:
   linux_aarch64: default
   linux_ppc64le: azure
-conda_build:
-  pkg_format: '2'
