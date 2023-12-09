@@ -16,8 +16,8 @@ build:
   script_env:
     - CMAKE_GENERATOR=Ninja
     - INSTALL_PREFIX=${PREFIX}
-    - CMAKE_ARGS=${CMAKE_ARGS} -DFIND_RMM_CPP=ON -DThrust_ROOT=${PREFIX}/include/rapids/thrust/
   script:
+    - export CMAKE_ARGS="${CMAKE_ARGS} -DFIND_RMM_CPP=ON -DThrust_ROOT=${PREFIX}/include/rapids/thrust/"
     - cd rmm/python
     - {{ PYTHON }} -m pip install . --no-deps -vv
   missing_dso_whitelist:
