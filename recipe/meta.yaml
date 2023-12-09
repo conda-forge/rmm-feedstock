@@ -16,7 +16,7 @@ build:
   script_env:
     - CMAKE_GENERATOR=Ninja
     - INSTALL_PREFIX=${PREFIX}
-    - SKBUILD_CONFIGURE_OPTIONS=-DFIND_RMM_CPP=ON -DThrust_ROOT=${PREFIX}/include/rapids/thrust/
+    - CMAKE_ARGS=${CMAKE_ARGS} -DFIND_RMM_CPP=ON -DThrust_ROOT=${PREFIX}/include/rapids/thrust/
   script:
     - cd rmm/python
     - {{ PYTHON }} -m pip install . --no-deps -vv
