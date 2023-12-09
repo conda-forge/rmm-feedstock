@@ -12,7 +12,7 @@ source:
 
 build:
   number: 0
-  skip: true  # [(not linux) or cuda_compiler == "None"]
+  skip: true  # [(not linux) or (cuda_compiler == "None")]
   script_env:
     - CMAKE_GENERATOR=Ninja
     - INSTALL_PREFIX=${PREFIX}
