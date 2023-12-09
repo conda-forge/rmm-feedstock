@@ -1,5 +1,5 @@
 {% set name = "rmm" %}
-{% set version = "22.12.00" %}
+{% set version = "23.10.00" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/rapidsai/rmm/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 5eb53d9b437d83a001869f5bef6d272b1d50d9b524df1cee833bc91b7576f65b
+  sha256: 4e2408073662fdfd92ca21d87f7d2afc64d2595fd5a1e3fa321d3472cfbd7f7a
   folder: rmm
 
 build:
@@ -31,21 +31,22 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}
-    - cmake >=3.23.1,!=3.25.0
+    - cmake >=3.26.4
     - ninja
   host:
+    - cuda-cudart-dev        # [(cuda_compiler_version or "").startswith("12")]
     - librmm ={{ version }}
     - python
     - pip
-    - cython >=0.29,<0.30
-    - spdlog >=1.8.5,<2.0.0a0
-    - cuda-python >=11.7.1,<12.0
+    - tomli                  # [py<311]
+    - cython >=3.0.0
+    - cuda-python ==11.7.1   # [(cuda_compiler_version or "").startswith("11")]
+    - cuda-python ==12.0.0   # [(cuda_compiler_version or "").startswith("12")]
     - scikit-build >=0.13.1
   run:
     - python
-    - numba >=0.49
-    - numpy >=1.19
-    - cuda-python >=11.7.1,<12.0
+    - numba >=0.57
+    - numpy >=1.21
 
 test:
   imports:
